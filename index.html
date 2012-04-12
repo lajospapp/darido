@@ -13,7 +13,7 @@
 </head>
 <body>
 	
-	<div style="background: #eee; border: 1px solid #ccc; margin: 0 auto; width: 900px;">
+	<div id="content" style="background: #eee; border: 1px solid #ccc; font: 11px/18px Verdana; margin: 0 auto; width: 900px; padding: 15px;">
 		Konrad's darido events:
 		<ul/>
 	</div>
@@ -28,13 +28,13 @@
 	  $.each(data, function() {
 		var darido = this;
 		console.log(darido);
-	    items.push('<li id="' + darido.id + '">' + darido.eventDay + " : " + darido.title  +  '</li>');
+	    items.push('<li style="" id="' + darido.id + '">' + darido.eventDay + " : " + darido.title  +  '</li>');
 	  });
 
 	  $('<ul/>', {
 	    'class': 'my-new-list',
 	    html: items.join('')
-	  }).appendTo('body');
+	  }).appendTo('#content');
 	});
 	</script>
 </body>
