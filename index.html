@@ -3,59 +3,61 @@
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>untitled</title>
-	<meta name="generator" content="TextMate http://macromates.com/">
-	<meta name="author" content="lalyos">
-	<!-- Date: 2012-04-12 -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<style>
-/*	li:nth-child(even) {background: #CCC}
-	li:nth-child(odd) {background: #FFF}*/
-	.widget-header {
-	border: 1px solid #A8A8A8;
-	background: #C4C4C4 url("/showcase/javax.faces.resource/images/ui-bg_highlight-soft_100_c4c4c4_1x100.png.jsf?ln=primefaces-aristo") 50% 50% repeat-x;
-	background: #C4C4C4 linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-	background: #C4C4C4 -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), to(rgba(255, 255, 255, 0)));
-	background: #C4C4C4 -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
-	color: #333;
-	font-weight: bold;
-	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
-	}
-	
-	.corner-all {
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	}
-	</style>
-	
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+    </title>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+    <style>
+        /* App custom styles */
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    </script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js">
+    </script>
+
 </head>
 <body>
-	
-	<div id="content" style="background: #eee; border: 1px solid #ccc; font: 11px/18px Verdana; margin: 0 auto; width: 900px; padding: 15px;">
-		Konrad's darido events:
-		<ul/>
-	</div>
+    <div data-role="page" id="page1">
+        <div data-theme="a" data-role="header">
+            <h3>
+                Darido
+            </h3>
+        </div>
+        <div id="content" data-role="content">
 
-	<div id="images">
-	</div>
+
+	    </div>
+    </div>
 	
 	<script>
 	$.getJSON('http://darido.cloudfoundry.com/events', function(data) {
 	  var items = [];
-	console.log(data);
+	  items.push('<li data-role="list-divider" role="heading">Events</li>');
 	  $.each(data, function() {
 		var darido = this;
-		console.log(darido);
-	    items.push('<li class="widget-header corner-all" id="' + darido.id + '">' + darido.eventDay + " : " + darido.title  +  '</li>');
+		console.log("next event ..");
+	    items.push('<li data-theme="c"><a href="#page1" data-transition="slide">' 
+		+ darido.eventDay + " : " + darido.title  
+		+  '</a></li>');
 	  });
 
-	  $('<ul/>', {
-	    'class': 'my-new-list',
+	  $('<ul />', {
+		'id' : 'myList',
+		'data-divider-theme' : 'b',
+		'data-inset' : 'true',
+		'data-role' :"listview",
 	    html: items.join('')
 	  }).appendTo('#content');
+	
+	$("#myList").listview();
+	//$("#myList").listview('refresh');
+	
 	});
+	 
+	
 	</script>
+    
 </body>
 </html>
+
